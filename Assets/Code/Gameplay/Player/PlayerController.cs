@@ -23,12 +23,12 @@ public class PlayerController : MonoBehaviour {
 		MovePlayer ();
 	}
 	void MovePlayer () {
-		rb.velocity = new Vector2 (direction.x * speed, rb.velocity.y); 
+		rb.velocity = new Vector2 (direction.x * speed, rb.velocity.y);
 	}
 	private void OnMove (Vector2 direction) {
 		this.direction = direction;
 	}
 	void OnJump () {
-		rb.velocity = new Vector2(rb.velocity.x, jumpPower);
+		rb.velocity += Vector2.up * jumpPower;
 	}
 }

@@ -140,7 +140,7 @@ public partial class @InputBinds : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""821f758a-5633-4967-aadb-c3fed7455c30"",
-                    ""path"": ""<Gamepad>/leftStick/down"",
+                    ""path"": ""<Gamepad>/leftStick"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
