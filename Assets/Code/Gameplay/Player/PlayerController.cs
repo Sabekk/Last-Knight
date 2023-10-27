@@ -9,16 +9,20 @@ public class PlayerController : MonoBehaviour {
 	[SerializeField] float gravity;
 	Rigidbody2D rb;
 	Animator animator;
+	BoxCollider2D playerCollider;
 	bool isRightDirection;
 	MovingState currentState;
 	Vector2 direction = Vector2.zero;
 	Quaternion leftDirection = new Quaternion (0, 90, 0, 0);
 	Quaternion rightDirection = new Quaternion (0, 0, 0, 0);
 
+	public bool IsGrounded => Physics2D.BoxCast (transform.position, playerCollider.size, 0, Vector2.down, playerCollider.bounds.extents.y + 0.2f, LayerMask.GetMask("ground"));
+
 
 	private void Awake () {
 		rb = GetComponent<Rigidbody2D> ();
 		animator = GetComponent<Animator> ();
+		playerCollider = GetComponent<BoxCollider2D> ();
 		isRightDirection = true;
 		Events.Gameplay.Move.OnMoveInDirection += OnMove;
 		Events.Gameplay.Move.OnJump += OnJump;
@@ -50,6 +54,8 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 	void OnJump () {
+		if (!IsGrounded)
+			return;
 		rb.velocity += Vector2.up * jumpPower;
 	}
 
