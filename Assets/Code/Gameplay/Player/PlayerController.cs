@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//[RequireComponent (typeof (CharacterController))]
+[RequireComponent (typeof (Rigidbody2D))]
 public class PlayerController : MonoBehaviour {
 	enum MovingState { idle, running, jumping, falling }
 	[SerializeField] float speed;
@@ -13,28 +13,38 @@ public class PlayerController : MonoBehaviour {
 	Rigidbody2D rb;
 	BoxCollider2D playerCollider;
 	bool isRightDirection;
+	bool isMovable;
+
 	MovingState currentState;
 	Vector2 direction = Vector2.zero;
 
 	public bool IsGrounded => Physics2D.BoxCast (transform.position, playerCollider.size, 0, Vector2.down, playerCollider.bounds.extents.y + 0.2f, LayerMask.GetMask ("ground"));
 
-
 	private void Awake () {
+		isRightDirection = true;
+		isMovable = true;
 		bodySprite = GetComponent<SpriteRenderer> ();
 		rb = GetComponent<Rigidbody2D> ();
 		animator = GetComponent<Animator> ();
 		playerCollider = GetComponent<BoxCollider2D> ();
-		isRightDirection = true;
+
 		Events.Gameplay.Move.OnMoveInDirection += OnMove;
 		Events.Gameplay.Move.OnJump += OnJump;
+		Events.Gameplay.Player.OnDeath += OnDeath;
 	}
 	private void OnDestroy () {
-		Events.Gameplay.Move.OnMoveInDirection -= OnMove;
-		Events.Gameplay.Move.OnJump -= OnJump;
+		Dispose ();
 	}
 	private void Update () {
+		if (!isMovable)
+			return;
 		MovePlayer ();
 		UpdateState ();
+	}
+	void Dispose () {
+		Events.Gameplay.Move.OnMoveInDirection -= OnMove;
+		Events.Gameplay.Move.OnJump -= OnJump;
+		Events.Gameplay.Player.OnDeath -= OnDeath;
 	}
 	void MovePlayer () {
 		rb.velocity = new Vector2 (direction.x * speed, rb.velocity.y);
@@ -62,23 +72,23 @@ public class PlayerController : MonoBehaviour {
 
 	void UpdateState () {
 		if (!IsGrounded) {
-			if (rb.velocity.y > 1.5f) {
+			if (rb.velocity.y > 1.5f)
 				currentState = MovingState.jumping;
-				Debug.Log ("jumping");
-			}
-			else if (rb.velocity.y < 1.5f) {
-				Debug.Log ("falling");
+			else if (rb.velocity.y < 1.5f)
 				currentState = MovingState.falling;
-
-			}
 		} else {
-			if (direction.x > 0 || direction.x < 0) {
+			if (direction.x > 0 || direction.x < 0)
 				currentState = MovingState.running;
-				Debug.Log ("running");
-			}
 			else
 				currentState = MovingState.idle;
 		}
 		animator.SetInteger ("CurrentState", (int)currentState);
+	}
+
+	void OnDeath () {
+		Dispose ();
+		rb.velocity = Vector2.zero;
+		direction = Vector2.zero;
+		isMovable = false;
 	}
 }
