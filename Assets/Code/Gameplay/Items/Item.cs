@@ -4,11 +4,8 @@ using UnityEngine;
 
 public abstract class Item : MonoBehaviour, ICollectable, ObjectPool.IPoolable {
 	Collider2D itemCollider;
-
 	public ObjectPool.PoolObject Poolable { get; set; }
-
 	public void Collect () {
-		Debug.Log ("collect");
 		OnCollect ();
 	}
 

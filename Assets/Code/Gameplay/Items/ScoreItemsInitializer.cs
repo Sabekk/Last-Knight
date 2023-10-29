@@ -15,7 +15,7 @@ public class ScoreItemsInitializer : MonoBehaviour {
 		};
 	List<Transform> scoreItemsHolders;
 
-	private void Awake () {
+	public void Initialize () {
 		scoreItemsHolders = new List<Transform> ();
 		scoreItemsHolders.AddRange (GetComponentsInChildren<Transform> ());
 		scoreItemsHolders.Remove (transform);
@@ -25,8 +25,5 @@ public class ScoreItemsInitializer : MonoBehaviour {
 			item.transform.SetParent (holder);
 			item.transform.position = holder.position;
 		}
-	}
-	private void OnDestroy () {
-		scoreItemsHolders.Clear ();
 	}
 }

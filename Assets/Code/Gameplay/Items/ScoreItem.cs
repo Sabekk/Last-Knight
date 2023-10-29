@@ -11,6 +11,7 @@ public class ScoreItem : Item {
 	}
 	public override void OnCollect () {
 		base.OnCollect ();
+		Events.Gameplay.Level.OnGetPoint.Invoke (points);
 		ObjectPool.Instance.ReturnToPool (this);
 	}
 }

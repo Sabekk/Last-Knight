@@ -3,6 +3,7 @@ using UnityEngine;
 public class GameplayEvents {
 	public Moving Move { get; private set; } = new Moving ();
 	public PlayerCharacter Player { get; private set; } = new PlayerCharacter ();
+	public CurrentLevel Level { get; private set; } = new CurrentLevel ();
 
 	/// <summary>
 	/// Events of player moving
@@ -22,12 +23,22 @@ public class GameplayEvents {
 	/// </summary>
 	public class PlayerCharacter {
 		/// <summary>
-		/// Called when player get hit. Current health/max health
+		/// Called when player get hit. Current health
 		/// </summary>
-		public Events.Event<int, int> OnGetHit = new Events.Event<int, int> ();
+		public Events.Event<int> OnGetHit = new Events.Event<int> ();
 		/// <summary>
 		/// Called when player death
 		/// </summary>
 		public Events.Event OnDeath = new Events.Event ();
+	}
+
+	/// <summary>
+	/// Events of current playing level
+	/// </summary>
+	public class CurrentLevel {
+		/// <summary>
+		/// Called when player got points
+		/// </summary>
+		public Events.Event<int> OnGetPoint = new Events.Event<int> ();
 	}
 }

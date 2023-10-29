@@ -31,12 +31,12 @@ public class PlayerHealth : MonoBehaviour, IDamagable {
 
 	public void TakeDamage (int damage) {
 		Health -= damage;
-		if (Health <= 0) {
+		if (Health <= 0)
 			Kill ();
-		} else {
+		else
 			animator.Play ("GetHit", 1);
-			Events.Gameplay.Player.OnGetHit.Invoke (Health, maxHealth);
-		}
+
+		Events.Gameplay.Player.OnGetHit.Invoke (Health);
 
 	}
 	public void Kill () {

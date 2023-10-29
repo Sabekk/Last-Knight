@@ -90,5 +90,6 @@ public class PlayerController : MonoBehaviour {
 		rb.velocity = Vector2.zero;
 		direction = Vector2.zero;
 		isMovable = false;
+		rb.constraints = RigidbodyConstraints2D.FreezeAll;
 	}
 }
