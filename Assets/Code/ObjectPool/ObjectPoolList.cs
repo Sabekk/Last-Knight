@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu (fileName = "ObjectPoolList", menuName = "Singleton/ObjectPoolList")]
-public class ObjectPoolList : ScritableSingleton<ObjectPoolList>
+public class ObjectPoolList : ScriptableSingleton<ObjectPoolList>
 {
 	[SerializeField] List<PoolInstance> instances;
 	public List<PoolInstance> Instances => instances;

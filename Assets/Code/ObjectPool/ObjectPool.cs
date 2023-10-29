@@ -7,7 +7,6 @@ public class ObjectPool : Singleton<ObjectPool> {
 	Dictionary<string, PoolInstance> poolDictionary;
 	Dictionary<string, Transform> poolCategory;
 
-
 	Transform mainPoolParent;
 
 	public ObjectPool () {

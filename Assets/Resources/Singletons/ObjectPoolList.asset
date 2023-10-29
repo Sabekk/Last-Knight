@@ -12,4 +12,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b04ae35ce63f4e94db6ba11ab3551b35, type: 3}
   m_Name: ObjectPoolList
   m_EditorClassIdentifier: 
-  instances: []
+  instances:
+  - name: scoreItem_apple
+    prefab: {fileID: 577888498709760686, guid: 45d47d1bd15a0a54898cbc194e6143fb, type: 3}
+    size: 5
+  - name: scoreItem_banana
+    prefab: {fileID: 4977536085230448694, guid: 1ad73bb575fa3eb4d8d4b5e5c388d85b, type: 3}
+    size: 5
+  - name: scoreItem_cherry
+    prefab: {fileID: 3890651362657126156, guid: d93c96f1da4460242982f4d35ddc941a, type: 3}
+    size: 5
+  - name: scoreItem_kiwi
+    prefab: {fileID: 5974813601630932059, guid: 50114cd6aaccbae42884e5c23c16b060, type: 3}
+    size: 5
+  - name: scoreItem_melon
+    prefab: {fileID: 5480746141100768640, guid: 7f614849dd71de64b8b49c864a9ef542, type: 3}
+    size: 5
+  - name: scoreItem_orange
+    prefab: {fileID: 4603065023693340734, guid: b6f1052d88aa6c94d85560048bedad6a, type: 3}
+    size: 5
+  - name: scoreItem_pineapple
+    prefab: {fileID: 4738363163442042444, guid: 0ead65c378e1b0046a8bb5473438f8ec, type: 3}
+    size: 5
+  - name: scoreItem_strawberry
+    prefab: {fileID: 4802031568290102102, guid: 1325e9589b2bfd645ac2d38e864e5194, type: 3}
+    size: 5

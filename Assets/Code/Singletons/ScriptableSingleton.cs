@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScritableSingleton<T> : ScriptableObject where T : ScritableSingleton<T> {
+public class ScriptableSingleton<T> : ScriptableObject where T : ScriptableSingleton<T> {
 	protected static T _instance;
 	public static T Instance {
 		get {
