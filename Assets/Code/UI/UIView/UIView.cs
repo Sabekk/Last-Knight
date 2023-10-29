@@ -11,16 +11,16 @@ public abstract class UIView : MonoBehaviour {
 	public virtual void Initialize () {
 
 	}
-	public virtual void Actiavate () {
+	public virtual void Activate () {
 		OnActivate ();
 		gameObject.SetActive (true);
 		if (previous != this)
 			previous = current;
 		if (current)
-			current.Deactiavate ();
+			current.Deactivate ();
 		current = this;
 	}
-	public virtual void Deactiavate () {
+	public virtual void Deactivate () {
 		OnDeactivate ();
 		gameObject.SetActive (false);
 		if (current == this)
@@ -36,8 +36,8 @@ public abstract class UIView : MonoBehaviour {
 	}
 	public virtual void BackToPrevious () {
 		if (previous)
-			previous.Actiavate ();
+			previous.Activate ();
 		else
-			Deactiavate ();
+			Deactivate ();
 	}
 }

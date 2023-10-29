@@ -24,6 +24,7 @@ public class PlayerUIController : MonoBehaviour, InputBinds.IUIActions {
 			Input.Disable ();
 			break;
 			case LevelManager.GameState.pause:
+			case LevelManager.GameState.gameover:
 			Input.Enable ();
 			break;
 			default:

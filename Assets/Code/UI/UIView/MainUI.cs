@@ -25,7 +25,7 @@ public class MainUI : MonoBehaviour {
 	void ActivateView (string name) {
 		foreach (var view in views) {
 			if (view.Name == name) {
-				view.Actiavate ();
+				view.Activate ();
 				break;
 			}
 		}

@@ -12,11 +12,18 @@ public class MenuPauseUIView : UIView {
 	}
 
 	void OnPause () {
-		if (LevelManager.Instance.CurrentGameState == LevelManager.GameState.pause)
-			ResumeGame ();
-		else {
-			Events.UI.View.OnCallView.Invoke ("pauseMenu");
+		switch (LevelManager.Instance.CurrentGameState) {
+			case LevelManager.GameState.play:
+			Activate ();
 			Events.Gameplay.State.OnGameStateChanged.Invoke (LevelManager.GameState.pause);
+			break;
+			case LevelManager.GameState.pause:
+			ResumeGame ();
+			break;
+			case LevelManager.GameState.gameover:
+			break;
+			default:
+			break;
 		}
 	}
 	public void OpenOptions () {
@@ -29,7 +36,7 @@ public class MenuPauseUIView : UIView {
 		Events.UI.View.OnCallView.Invoke ("loadView");
 	}
 	public void ResumeGame () {
-		Deactiavate ();
+		Deactivate ();
 		Events.Gameplay.State.OnGameStateChanged.Invoke (LevelManager.GameState.play);
 	}
 	public override void BackToPrevious () {
