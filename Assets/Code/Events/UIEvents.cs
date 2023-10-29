@@ -1,7 +1,8 @@
 public class UIEvents {
 	public PlayerStatus Stauts { get; private set; } = new PlayerStatus ();
+	public ViewStatus View { get; private set; } = new ViewStatus ();
 	/// <summary>
-	/// Events ofplayer status
+	/// Events of player status
 	/// </summary>
 	public class PlayerStatus {
 		/// <summary>
@@ -9,4 +10,15 @@ public class UIEvents {
 		/// </summary>
 		public Events.Event OnRefreshPlayerScore = new Events.Event ();
 	}
+
+	/// <summary>
+	/// Events of ui views
+	/// </summary>
+	public class ViewStatus {
+		/// <summary>
+		/// Called when call for ui view
+		/// </summary>
+		public Events.Event<string> OnCallView = new Events.Event<string> ();
+	}
+
 }

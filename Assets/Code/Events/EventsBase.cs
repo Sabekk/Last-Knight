@@ -3,6 +3,7 @@ using System;
 public static class Events {
 	static UIEvents _ui;
 	static GameplayEvents _gameplay;
+	static PlayerEvents _player;
 	public static UIEvents UI {
 		get {
 			if (_ui == null)
@@ -16,6 +17,14 @@ public static class Events {
 			if (_gameplay == null)
 				_gameplay = new GameplayEvents ();
 			return _gameplay;
+		}
+	}
+
+	public static PlayerEvents Player {
+		get {
+			if (_player == null)
+				_player = new PlayerEvents ();
+			return _player;
 		}
 	}
 

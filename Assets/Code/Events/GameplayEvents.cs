@@ -4,6 +4,7 @@ public class GameplayEvents {
 	public Moving Move { get; private set; } = new Moving ();
 	public PlayerCharacter Player { get; private set; } = new PlayerCharacter ();
 	public CurrentLevel Level { get; private set; } = new CurrentLevel ();
+	public GameState State { get; private set; } = new GameState ();
 
 	/// <summary>
 	/// Events of player moving
@@ -40,5 +41,15 @@ public class GameplayEvents {
 		/// Called when player got points
 		/// </summary>
 		public Events.Event<int> OnGetPoint = new Events.Event<int> ();
+	}
+
+	/// <summary>
+	/// Events of game state
+	/// </summary>
+	public class GameState {
+		/// <summary>
+		/// Called when game state changed
+		/// </summary>
+		public Events.Event<LevelManager.GameState> OnGameStateChanged = new Events.Event<LevelManager.GameState> ();
 	}
 }

@@ -46,90 +46,9 @@ public partial class @InputBinds : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Attack"",
-                    ""type"": ""Button"",
-                    ""id"": ""205e02c8-04c7-4d9b-a7ec-10625479f308"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Aim"",
-                    ""type"": ""Button"",
-                    ""id"": ""6e492bbc-072b-469d-b47d-16c59c8b8c11"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""OpenMenu"",
                     ""type"": ""Button"",
                     ""id"": ""81c75ab0-5539-4ccc-b51f-b078b3b6007e"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Item1"",
-                    ""type"": ""Button"",
-                    ""id"": ""5f4a0e6c-e450-4ecd-97f3-980665283913"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Item2"",
-                    ""type"": ""Button"",
-                    ""id"": ""c5302694-7be1-4cc4-8e01-581c2a6c8cd6"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Item3"",
-                    ""type"": ""Button"",
-                    ""id"": ""cf2a1620-b022-4f7a-a66c-6f18ac71cfbe"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Item4"",
-                    ""type"": ""Button"",
-                    ""id"": ""c327c0f5-73d9-4c38-a5c2-a5f84d579ef3"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Item5"",
-                    ""type"": ""Button"",
-                    ""id"": ""0a902c7d-474d-483f-aa02-661558d1797d"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""NextItem"",
-                    ""type"": ""Button"",
-                    ""id"": ""b0ddd2bc-ef8f-42a4-b5df-2f437a688c9b"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""PreviousItem"",
-                    ""type"": ""Button"",
-                    ""id"": ""220ceb22-11d2-4631-981e-322a3b176e1f"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -227,39 +146,6 @@ public partial class @InputBinds : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""ef9d8870-e788-4ed0-a7b8-97ad0c8187e7"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Attack"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""827c4215-147d-477a-a00c-012f76b111d2"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Attack"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""0ffcc141-7d12-4342-9c21-cbf33b0e6425"",
-                    ""path"": ""<Gamepad>/rightStick/left"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Aim"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""9534a4df-2c77-478d-aff4-d58541561dd2"",
                     ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
@@ -277,83 +163,6 @@ public partial class @InputBinds : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""OpenMenu"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""ee06261e-4eef-4a87-81ec-c2ae499dee20"",
-                    ""path"": ""<Keyboard>/1"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Item1"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""d499c972-59bc-4fcc-949d-b0d4c25af1e0"",
-                    ""path"": ""<Keyboard>/2"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Item2"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""45394b96-f967-42b6-b99b-184c3fe80ec1"",
-                    ""path"": ""<Keyboard>/3"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Item3"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""32f6b660-cbe2-4908-906b-1af02ee89d1a"",
-                    ""path"": ""<Keyboard>/4"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Item4"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""e19f1fbd-0cbc-4407-9e4e-e8ac45464a11"",
-                    ""path"": ""<Keyboard>/5"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Item5"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""58368c1a-8659-4477-aff1-0af75f34a573"",
-                    ""path"": ""<Gamepad>/dpad/right"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""NextItem"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""8f992ce0-403f-4c86-891b-dae0cf3fe022"",
-                    ""path"": ""<Gamepad>/dpad/left"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""PreviousItem"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -575,16 +384,7 @@ public partial class @InputBinds : IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
-        m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
-        m_Player_Aim = m_Player.FindAction("Aim", throwIfNotFound: true);
         m_Player_OpenMenu = m_Player.FindAction("OpenMenu", throwIfNotFound: true);
-        m_Player_Item1 = m_Player.FindAction("Item1", throwIfNotFound: true);
-        m_Player_Item2 = m_Player.FindAction("Item2", throwIfNotFound: true);
-        m_Player_Item3 = m_Player.FindAction("Item3", throwIfNotFound: true);
-        m_Player_Item4 = m_Player.FindAction("Item4", throwIfNotFound: true);
-        m_Player_Item5 = m_Player.FindAction("Item5", throwIfNotFound: true);
-        m_Player_NextItem = m_Player.FindAction("NextItem", throwIfNotFound: true);
-        m_Player_PreviousItem = m_Player.FindAction("PreviousItem", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigation = m_UI.FindAction("Navigation", throwIfNotFound: true);
@@ -652,32 +452,14 @@ public partial class @InputBinds : IInputActionCollection2, IDisposable
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private readonly InputAction m_Player_Movement;
     private readonly InputAction m_Player_Jump;
-    private readonly InputAction m_Player_Attack;
-    private readonly InputAction m_Player_Aim;
     private readonly InputAction m_Player_OpenMenu;
-    private readonly InputAction m_Player_Item1;
-    private readonly InputAction m_Player_Item2;
-    private readonly InputAction m_Player_Item3;
-    private readonly InputAction m_Player_Item4;
-    private readonly InputAction m_Player_Item5;
-    private readonly InputAction m_Player_NextItem;
-    private readonly InputAction m_Player_PreviousItem;
     public struct PlayerActions
     {
         private @InputBinds m_Wrapper;
         public PlayerActions(@InputBinds wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
-        public InputAction @Attack => m_Wrapper.m_Player_Attack;
-        public InputAction @Aim => m_Wrapper.m_Player_Aim;
         public InputAction @OpenMenu => m_Wrapper.m_Player_OpenMenu;
-        public InputAction @Item1 => m_Wrapper.m_Player_Item1;
-        public InputAction @Item2 => m_Wrapper.m_Player_Item2;
-        public InputAction @Item3 => m_Wrapper.m_Player_Item3;
-        public InputAction @Item4 => m_Wrapper.m_Player_Item4;
-        public InputAction @Item5 => m_Wrapper.m_Player_Item5;
-        public InputAction @NextItem => m_Wrapper.m_Player_NextItem;
-        public InputAction @PreviousItem => m_Wrapper.m_Player_PreviousItem;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -693,36 +475,9 @@ public partial class @InputBinds : IInputActionCollection2, IDisposable
                 @Jump.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
-                @Attack.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAttack;
-                @Attack.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAttack;
-                @Attack.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAttack;
-                @Aim.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAim;
-                @Aim.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAim;
-                @Aim.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAim;
                 @OpenMenu.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOpenMenu;
                 @OpenMenu.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOpenMenu;
                 @OpenMenu.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOpenMenu;
-                @Item1.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnItem1;
-                @Item1.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnItem1;
-                @Item1.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnItem1;
-                @Item2.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnItem2;
-                @Item2.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnItem2;
-                @Item2.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnItem2;
-                @Item3.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnItem3;
-                @Item3.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnItem3;
-                @Item3.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnItem3;
-                @Item4.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnItem4;
-                @Item4.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnItem4;
-                @Item4.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnItem4;
-                @Item5.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnItem5;
-                @Item5.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnItem5;
-                @Item5.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnItem5;
-                @NextItem.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNextItem;
-                @NextItem.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNextItem;
-                @NextItem.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNextItem;
-                @PreviousItem.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPreviousItem;
-                @PreviousItem.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPreviousItem;
-                @PreviousItem.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPreviousItem;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -733,36 +488,9 @@ public partial class @InputBinds : IInputActionCollection2, IDisposable
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
-                @Attack.started += instance.OnAttack;
-                @Attack.performed += instance.OnAttack;
-                @Attack.canceled += instance.OnAttack;
-                @Aim.started += instance.OnAim;
-                @Aim.performed += instance.OnAim;
-                @Aim.canceled += instance.OnAim;
                 @OpenMenu.started += instance.OnOpenMenu;
                 @OpenMenu.performed += instance.OnOpenMenu;
                 @OpenMenu.canceled += instance.OnOpenMenu;
-                @Item1.started += instance.OnItem1;
-                @Item1.performed += instance.OnItem1;
-                @Item1.canceled += instance.OnItem1;
-                @Item2.started += instance.OnItem2;
-                @Item2.performed += instance.OnItem2;
-                @Item2.canceled += instance.OnItem2;
-                @Item3.started += instance.OnItem3;
-                @Item3.performed += instance.OnItem3;
-                @Item3.canceled += instance.OnItem3;
-                @Item4.started += instance.OnItem4;
-                @Item4.performed += instance.OnItem4;
-                @Item4.canceled += instance.OnItem4;
-                @Item5.started += instance.OnItem5;
-                @Item5.performed += instance.OnItem5;
-                @Item5.canceled += instance.OnItem5;
-                @NextItem.started += instance.OnNextItem;
-                @NextItem.performed += instance.OnNextItem;
-                @NextItem.canceled += instance.OnNextItem;
-                @PreviousItem.started += instance.OnPreviousItem;
-                @PreviousItem.performed += instance.OnPreviousItem;
-                @PreviousItem.canceled += instance.OnPreviousItem;
             }
         }
     }
@@ -828,16 +556,7 @@ public partial class @InputBinds : IInputActionCollection2, IDisposable
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
-        void OnAttack(InputAction.CallbackContext context);
-        void OnAim(InputAction.CallbackContext context);
         void OnOpenMenu(InputAction.CallbackContext context);
-        void OnItem1(InputAction.CallbackContext context);
-        void OnItem2(InputAction.CallbackContext context);
-        void OnItem3(InputAction.CallbackContext context);
-        void OnItem4(InputAction.CallbackContext context);
-        void OnItem5(InputAction.CallbackContext context);
-        void OnNextItem(InputAction.CallbackContext context);
-        void OnPreviousItem(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
