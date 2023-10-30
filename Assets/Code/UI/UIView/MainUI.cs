@@ -6,7 +6,7 @@ public class MainUI : MonoBehaviour {
 	[SerializeField] UIView[] views;
 	[SerializeField] GameObject background;
 
-	private void Awake () {
+	private void Start () {
 		Initialize ();
 	}
 	private void OnDestroy () {

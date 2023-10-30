@@ -11,20 +11,8 @@ public class GameOverUIView : UIView {
 		score.SetText (LevelManager.Instance.CurrentScore.ToString ());
 	}
 
-	public override void Initialize () {
-		base.Initialize ();
-		Events.Gameplay.Player.OnDeath += OnDeath;
-	}
-	private void OnDestroy () {
-		Events.Gameplay.Player.OnDeath -= OnDeath;
-	}
-	void OnDeath () {
-		Events.Gameplay.State.OnGameStateChanged.Invoke (LevelManager.GameState.endgame);
-		Activate ();
-	}
-
 	public void RestartLevel () {
-
+		GameplaySceneManager.RestartCurrentScene ();
 	}
 
 	public void OpenLoadView () {

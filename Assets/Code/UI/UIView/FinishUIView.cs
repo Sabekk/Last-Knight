@@ -11,18 +11,6 @@ public class FinishUIView : UIView {
 		score.SetText (LevelManager.Instance.CurrentScore.ToString ());
 	}
 
-	public override void Initialize () {
-		base.Initialize ();
-		Events.Gameplay.Level.OnLevelFinish += OnFinish;
-	}
-	private void OnDestroy () {
-		Events.Gameplay.Level.OnLevelFinish -= OnFinish;
-	}
-	void OnFinish () {
-		Events.Gameplay.State.OnGameStateChanged.Invoke (LevelManager.GameState.endgame);
-		Activate ();
-	}
-
 	public void NextLevel () {
 
 	}

@@ -12,13 +12,16 @@ public class ObjectPool : Singleton<ObjectPool> {
 	public ObjectPool () {
 		poolDictionary = new Dictionary<string, PoolInstance> ();
 		poolCategory = new Dictionary<string, Transform> ();
-
-		InitializePools ();
 	}
 
 	~ObjectPool () {
 		poolDictionary.Clear ();
 		poolCategory.Clear ();
+	}
+
+	public void ReloadPool () {
+		ClearAllPools ();
+		InitializePools ();
 	}
 
 	void InitializePools () {
@@ -65,6 +68,14 @@ public class ObjectPool : Singleton<ObjectPool> {
 		else {
 			Debug.LogError ("Object is not from pool", poolObj.prefab);
 		}
+	}
+
+	public void ClearAllPools () {
+		foreach (var pool in poolDictionary) {
+			pool.Value.Clear ();
+		}
+		poolDictionary.Clear ();
+		poolCategory.Clear ();
 	}
 
 	public void GetAllPoolsOfType (string type, ref List<string> pools) {
@@ -158,6 +169,16 @@ public class ObjectPool : Singleton<ObjectPool> {
 			GameObject newPoolObject = GameObject.Instantiate (prefab);
 			newPoolObject.name = newPoolObject.name + "_Pool";
 			ReturnToPool (new PoolObject (name, newPoolObject));
+		}
+
+		public void Clear () {
+			while (objects.Count > 0) {
+				var poolObj = objects.Pop ();
+				GameObject.Destroy (poolObj.prefab);
+			}
+			for (int i = taken.Count - 1; i > 0; i--) {
+				GameObject.Destroy (taken[i].prefab);
+			}
 		}
 	}
 

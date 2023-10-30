@@ -18,6 +18,7 @@ public abstract class UIView : MonoBehaviour {
 		}
 
 	}
+
 	public virtual void Activate () {
 		OnActivate ();
 		gameObject.SetActive (true);
