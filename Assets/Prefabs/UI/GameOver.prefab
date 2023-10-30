@@ -288,8 +288,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   transition:
-    active: {fileID: 21300000, guid: 4e75355f0aa718a498d932c89b2b994c, type: 3}
-    inactive: {fileID: 21300000, guid: 5e73cb0b2d2843f479811a41ea243999, type: 3}
+    active: {fileID: 21300000, guid: 89bbc17355dc0064aae767e8f31a93aa, type: 3}
+    inactive: {fileID: 21300000, guid: 4e75355f0aa718a498d932c89b2b994c, type: 3}
   mainImage: {fileID: 7041990253483868743}
 --- !u!222 &4733371693943050122
 CanvasRenderer:

@@ -41,6 +41,10 @@ public class GameplayEvents {
 		/// Called when player got points
 		/// </summary>
 		public Events.Event<int> OnGetPoint = new Events.Event<int> ();
+		/// <summary>
+		/// Called when player finish level
+		/// </summary>
+		public Events.Event OnLevelFinish = new Events.Event ();
 	}
 
 	/// <summary>
