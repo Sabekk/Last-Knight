@@ -19,7 +19,7 @@ public class GameOverUIView : UIView {
 		Events.Gameplay.Player.OnDeath -= OnDeath;
 	}
 	void OnDeath () {
-		Events.Gameplay.State.OnGameStateChanged.Invoke (LevelManager.GameState.gameover);
+		Events.Gameplay.State.OnGameStateChanged.Invoke (LevelManager.GameState.endgame);
 		Activate ();
 	}
 

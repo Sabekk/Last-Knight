@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class LevelManager : MonoSingleton<LevelManager> {
-	public enum GameState { play, pause, gameover }
+	public enum GameState { play, pause, endgame }
 	[SerializeField] ScoreItemsInitializer scoreItems;
 	GameState currentState;
 	int currentScore;
@@ -35,7 +35,7 @@ public class LevelManager : MonoSingleton<LevelManager> {
 			Time.timeScale = 1;
 			break;
 			case GameState.pause:
-			case GameState.gameover:
+			case GameState.endgame:
 			Time.timeScale = 0;
 			break;
 			default:

@@ -20,7 +20,7 @@ public class MenuPauseUIView : UIView {
 			case LevelManager.GameState.pause:
 			ResumeGame ();
 			break;
-			case LevelManager.GameState.gameover:
+			case LevelManager.GameState.endgame:
 			break;
 			default:
 			break;

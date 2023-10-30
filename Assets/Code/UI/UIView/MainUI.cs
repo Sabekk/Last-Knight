@@ -16,7 +16,6 @@ public class MainUI : MonoBehaviour {
 	void Initialize () {
 		Events.UI.View.OnCallView += ActivateView;
 
-
 		foreach (var view in views) {
 			view.Initialize ();
 		}

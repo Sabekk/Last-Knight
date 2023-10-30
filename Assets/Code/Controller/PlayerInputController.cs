@@ -30,7 +30,7 @@ public class PlayerInputController : MonoBehaviour, InputBinds.IPlayerActions {
 			Input.Enable ();
 			break;
 			case LevelManager.GameState.pause:
-			case LevelManager.GameState.gameover:
+			case LevelManager.GameState.endgame:
 			Input.Disable ();
 			break;
 			default:
