@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
 
 public class PlayerUIController : MonoSingleton<PlayerUIController>, InputBinds.IUIActions {
+	[SerializeField] bool initialActive;
 	static InputBinds _controll;
 	bool gamePadInUse;
 	public bool GamepadUsing => gamePadInUse;
@@ -20,6 +21,10 @@ public class PlayerUIController : MonoSingleton<PlayerUIController>, InputBinds.
 		base.Awake ();
 		Input.UI.SetCallbacks (this);
 		Events.Gameplay.State.OnGameStateChanged += OnStateChange;
+	}
+	private void OnEnable () {
+		if (initialActive)
+			Input.Enable();
 	}
 
 	private void OnDestroy () {

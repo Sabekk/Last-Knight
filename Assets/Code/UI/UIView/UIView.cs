@@ -14,7 +14,7 @@ public abstract class UIView : MonoBehaviour {
 		buttons = new List<UIButton> ();
 		buttons.AddRange (GetComponentsInChildren<UIButton> (true));
 		foreach (var button in buttons) {
-			button.Initialize (this);
+			button.Initialize ();
 		}
 
 	}

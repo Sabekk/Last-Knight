@@ -16,7 +16,7 @@ public class FinishUIView : UIView {
 	}
 
 	public void ReturnToMainMenu () {
-
+		GameplaySceneManager.LoadMainMenu ();
 	}
 
 	public override void BackToPrevious () {

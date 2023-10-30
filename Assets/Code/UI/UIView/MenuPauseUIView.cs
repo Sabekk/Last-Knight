@@ -13,11 +13,11 @@ public class MenuPauseUIView : UIView {
 		Events.UI.View.OnCallView.Invoke ("loadView");
 	}
 	public void ResumeGame () {
+		Events.Gameplay.State.OnGameStateChanged.Invoke (LevelManager.GameState.play);
 		Deactivate ();
 	}
-	public override void OnDeactivate () {
-		base.OnDeactivate ();
-		Events.Gameplay.State.OnGameStateChanged.Invoke (LevelManager.GameState.play);
+	public void ReturnToMainMenu () {
+		GameplaySceneManager.LoadMainMenu ();
 	}
 	public override void BackToPrevious () {
 		ResumeGame ();

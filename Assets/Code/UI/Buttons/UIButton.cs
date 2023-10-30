@@ -13,8 +13,8 @@ public class UIButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 	UIView parent;
 	protected Button button;
 
-	public virtual void Initialize (UIView view) {
-		parent = view;
+	public virtual void Initialize () {
+		parent = GetComponentInParent<UIView> (true);
 		button = GetComponent<Button> ();
 		button.onClick.RemoveAllListeners ();
 		button.onClick.AddListener (OnClick);
