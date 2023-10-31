@@ -16,7 +16,17 @@ public abstract class Matcher<T1, T2, T3> : Singleton<T3> where T1 : class where
 		collection[element] = type;
 	}
 
+	public void RemoveFromCollection (T1 element) {
+		if (collection.ContainsKey (element))
+			collection.Remove (element);
+	}
+
 	public bool CheckCollection (T1 element, out T2 type) {
 		return collection.TryGetValue (element, out type);
+	}
+	public List<T2> GetAllCollectionElements () {
+		List<T2> elements = new List<T2> ();
+		elements.AddRange (collection.Values);
+		return elements;
 	}
 }

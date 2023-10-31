@@ -12,11 +12,13 @@ public class ObjectPool : Singleton<ObjectPool> {
 	public ObjectPool () {
 		poolDictionary = new Dictionary<string, PoolInstance> ();
 		poolCategory = new Dictionary<string, Transform> ();
+		Events.Scene.OnSceneLoaded += ReloadPool;
 	}
 
 	~ObjectPool () {
 		poolDictionary.Clear ();
 		poolCategory.Clear ();
+		Events.Scene.OnSceneLoaded -= ReloadPool;
 	}
 
 	public void ReloadPool () {
@@ -35,7 +37,7 @@ public class ObjectPool : Singleton<ObjectPool> {
 		if (mainPoolParent == null) {
 			mainPoolParent = new GameObject ("Pools").transform;
 		}
-		string category = name.Substring (0, name.IndexOf ('_'));
+		string category = name.Contains ("_") ? name.Substring (0, name.IndexOf ('_')) : name;
 		if (poolCategory.ContainsKey (category))
 			return poolCategory[category];
 		else {
@@ -48,14 +50,20 @@ public class ObjectPool : Singleton<ObjectPool> {
 
 	public PoolObject GetFromPool (string tag) {
 		PoolInstance instance = null;
-		poolDictionary.TryGetValue (tag, out instance);
-
-		if (instance != null)
+		if (poolDictionary.TryGetValue (tag, out instance))
 			return instance.GetFromPool ();
-		else {
-			Debug.LogError ("Pool cannot be found");
+
+
+		ObjectPoolList.PoolInstance poolInstance = ObjectPoolList.Instance.GetPoolInstanceByName (tag);
+		if (poolInstance == null) {
+			Debug.LogWarning ("Pool dosn't exist!: " + tag);
 			return null;
 		}
+
+		Transform parent = GetCategoryParent (poolInstance.name);
+		instance = new PoolInstance (poolInstance.name, poolInstance.prefab, poolInstance.size, parent);
+		poolDictionary[tag] = instance;
+		return instance.GetFromPool ();
 	}
 
 	public void ReturnToPool (IPoolable poolableObject) {

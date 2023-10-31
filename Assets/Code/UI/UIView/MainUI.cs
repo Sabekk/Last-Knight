@@ -6,7 +6,7 @@ public class MainUI : MonoBehaviour {
 	[SerializeField] UIView[] views;
 	[SerializeField] GameObject background;
 	[SerializeField] UIView initialActivation;
-
+	
 	private void Start () {
 		Initialize ();
 		if (initialActivation)

@@ -4,6 +4,7 @@ public static class Events {
 	static UIEvents _ui;
 	static GameplayEvents _gameplay;
 	static PlayerEvents _player;
+	static SceneEvents _scene;
 	public static UIEvents UI {
 		get {
 			if (_ui == null)
@@ -25,6 +26,13 @@ public static class Events {
 			if (_player == null)
 				_player = new PlayerEvents ();
 			return _player;
+		}
+	}
+	public static SceneEvents Scene {
+		get {
+			if (_scene == null)
+				_scene = new SceneEvents ();
+			return _scene;
 		}
 	}
 

@@ -37,3 +37,6 @@ MonoBehaviour:
   - name: scoreItem_strawberry
     prefab: {fileID: 4802031568290102102, guid: 1325e9589b2bfd645ac2d38e864e5194, type: 3}
     size: 5
+  - name: player
+    prefab: {fileID: 6569609033778727949, guid: 46c0d1ccd061dda4888d9a5f379bff45, type: 3}
+    size: 1

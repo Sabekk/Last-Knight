@@ -12,6 +12,7 @@ public class UIButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 	[SerializeField] Image mainImage;
 	UIView parent;
 	protected Button button;
+	public UIView Parent => parent;
 
 	public virtual void Initialize () {
 		parent = GetComponentInParent<UIView> (true);

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ScoreItem : Item {
-
 	[SerializeField] int points;
 	public override void Initialize () {
 		base.Initialize ();

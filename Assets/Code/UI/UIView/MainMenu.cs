@@ -2,10 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MainMenu : UIView
-{
+public class MainMenu : UIView {
 	public void StartNewGame () {
-		GameplaySceneManager.LoadScene ("Tutorial");
+		GameplaySceneManager.LoadInitializedScene ("Tutorial", true);
 	}
 	public void OpenLevelsChooser () {
 		Events.UI.View.OnCallView.Invoke ("levelChooseView");
@@ -18,7 +17,7 @@ public class MainMenu : UIView
 	}
 
 	public void QuitGame () {
-		
+		Application.Quit ();
 	}
 	public override void BackToPrevious () {
 

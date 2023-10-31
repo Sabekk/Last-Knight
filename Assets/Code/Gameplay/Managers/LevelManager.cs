@@ -5,10 +5,13 @@ using UnityEngine;
 public class LevelManager : MonoSingleton<LevelManager> {
 	public enum GameState { play, pause, endgame }
 	[SerializeField] ScoreItemsInitializer scoreItems;
+	[SerializeField] Transform startingPosition;
 	GameState currentState;
 	int currentScore;
 	public int CurrentScore => currentScore;
 	public GameState CurrentGameState => currentState;
+	PlayerHealth player;
+	const int maxPlayerHealth = 3;
 
 	protected override void Awake () {
 		base.Awake ();
@@ -18,10 +21,7 @@ public class LevelManager : MonoSingleton<LevelManager> {
 		Events.Gameplay.Level.OnLevelFinish += OnFinish;
 		Events.Gameplay.Player.OnDeath += OnDeath;
 	}
-	private void Start () {
-		InitializeLevel ();
-		scoreItems.Initialize ();
-	}
+
 	private void OnDestroy () {
 		Events.Gameplay.Level.OnGetPoint -= OnGetPoints;
 		Events.Gameplay.State.OnGameStateChanged -= OnGameStateChanged;
@@ -30,9 +30,17 @@ public class LevelManager : MonoSingleton<LevelManager> {
 		Events.Gameplay.Player.OnDeath -= OnDeath;
 	}
 
-	void InitializeLevel () {
+	public void Initialize () {
 		Time.timeScale = 1;
 		ObjectPool.Instance.ReloadPool ();
+		CreatePlayer (maxPlayerHealth, startingPosition.position);
+		scoreItems.Initialize ();
+	}
+
+	public void CreatePlayer (int health, Vector2 startPosition) {
+		if (!player)
+			player = ObjectPool.Instance.GetFromPool ("player").GetComponent<PlayerHealth> ();
+		player.SetData (health, startPosition);
 	}
 
 	void OnGetPoints (int points) {
@@ -75,6 +83,7 @@ public class LevelManager : MonoSingleton<LevelManager> {
 	void OnFinish () {
 		Events.Gameplay.State.OnGameStateChanged.Invoke (GameState.endgame);
 		Events.UI.View.OnCallView.Invoke ("finishView");
+		PlayerData.Instance.SetScore (PlayerData.Instance.Score + currentScore);
 	}
 	void OnDeath () {
 		Events.Gameplay.State.OnGameStateChanged.Invoke (GameState.endgame);

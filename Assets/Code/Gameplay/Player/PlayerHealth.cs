@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 [RequireComponent (typeof (Animator))]
-public class PlayerHealth : MonoBehaviour, IDamagable {
+public class PlayerHealth : MonoBehaviour, IDamagable, ISerializable, ObjectPool.IPoolable {
 	Animator animator;
 
 	int maxHealth = 3;
@@ -15,9 +15,22 @@ public class PlayerHealth : MonoBehaviour, IDamagable {
 	public bool IsAlive => Health > 0;
 	public int MaxHealth => maxHealth;
 
+	public ObjectPool.PoolObject Poolable { get; set; }
+
 	private void Awake () {
-		health = maxHealth;
 		animator = GetComponent<Animator> ();
+		SerializableMatcher.Instance.AddToCollection (gameObject, this);
+	}
+	private void OnDestroy () {
+		SerializableMatcher.Instance.RemoveFromCollection (gameObject);
+	}
+
+	public void SetData (int health, Vector2 startingPosition) {
+		this.health = health;
+		transform.position = startingPosition;
+		transform.SetParent (null);
+		transform.localScale = Vector3.one * 3;
+		Events.Gameplay.Player.OnGetHit.Invoke (Health);
 	}
 
 	private void OnTriggerEnter2D (Collider2D collision) {
@@ -42,5 +55,18 @@ public class PlayerHealth : MonoBehaviour, IDamagable {
 	public void Kill () {
 		animator.SetTrigger ("OnDeath");
 		Events.Gameplay.Player.OnDeath.Invoke ();
+	}
+
+	public void LoadGame (PlayerSaveData saveData) {
+
+	}
+
+	public void SaveGame (ref PlayerSaveData saveData) {
+		saveData.playerLives = Health;
+		saveData.playerPosition = transform.position;
+	}
+
+	public void AssignPoolable (ObjectPool.PoolObject poolable) {
+		Poolable = poolable;
 	}
 }
