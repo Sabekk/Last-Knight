@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SoundManager : MonoSingleton<SoundManager> {
-	[SerializeField] EffectAudioSource backgroundSound;
+	[SerializeField] AudioSource backgroundSound;
 	List<EffectAudioSource> effectsSources;
 
 	const string EFFECT_SOURCE = "sound_effectSource";
@@ -48,7 +48,8 @@ public class SoundManager : MonoSingleton<SoundManager> {
 	public void PlayBackgroundSound (string soundName) {
 		AudioClip clip = SoundContainer.Instance.FindLevelSound (soundName);
 		if (clip) {
-			backgroundSound.PlayClip (clip, true);
+			backgroundSound.clip = clip;
+			backgroundSound.Play ();
 		}
 	}
 
@@ -68,6 +69,6 @@ public class SoundManager : MonoSingleton<SoundManager> {
 		foreach (var source in effectsSources) {
 			source.Source.volume = effectsVolume;
 		}
-		backgroundSound.Source.volume = musicVolume;
+		backgroundSound.volume = musicVolume;
 	}
 }

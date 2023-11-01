@@ -4,16 +4,16 @@ using UnityEngine;
 
 public abstract class UIView : MonoBehaviour {
 	[SerializeField] string viewName;
-	public static UIView current;
 	UIView previous;
-	UIButton currentButton;
-	List<UIButton> buttons;
+	UISelectable currentSelection;
+	List<UISelectable> selections;
 	public string Name => viewName;
 
+	public static UIView current;
 	public virtual void Initialize () {
-		buttons = new List<UIButton> ();
-		buttons.AddRange (GetComponentsInChildren<UIButton> (true));
-		foreach (var button in buttons) {
+		selections = new List<UISelectable> ();
+		selections.AddRange (GetComponentsInChildren<UISelectable> (true));
+		foreach (var button in selections) {
 			button.Initialize ();
 		}
 
@@ -35,8 +35,8 @@ public abstract class UIView : MonoBehaviour {
 		gameObject.SetActive (false);
 		if (current == this)
 			current = null;
-		if (currentButton)
-			Deselect (currentButton);
+		if (currentSelection)
+			Deselect (currentSelection);
 	}
 	public virtual void OnActivate () {
 		Events.Player.Controller.OnChangeControllerState += Refresh;
@@ -46,11 +46,11 @@ public abstract class UIView : MonoBehaviour {
 	}
 	public virtual void Refresh () {
 		if (PlayerUIController.Instance.GamepadUsing) {
-			if (buttons.Count > 0)
-				Select (buttons[0]);
+			if (selections.Count > 0)
+				Select (selections[0]);
 		} else {
-			if (currentButton)
-				Deselect (currentButton);
+			if (currentSelection)
+				Deselect (currentSelection);
 		}
 	}
 	public virtual void BackToPrevious () {
@@ -59,56 +59,60 @@ public abstract class UIView : MonoBehaviour {
 		else
 			Deactivate ();
 	}
-	public virtual void Select (UIButton button) {
-		if (currentButton == button)
+	public virtual void Select (UISelectable selectable) {
+		if (currentSelection == selectable)
 			return;
-		if (currentButton) {
-			currentButton.Deselect ();
+		if (currentSelection) {
+			currentSelection.Deselect ();
 		}
-		currentButton = button;
-		if (currentButton)
-			currentButton.Select ();
+		currentSelection = selectable;
+		if (currentSelection)
+			currentSelection.Select ();
 	}
-	public virtual void Deselect (UIButton button) {
-		if (currentButton && currentButton == button)
-			currentButton.Deselect ();
-		currentButton = null;
+	public virtual void Deselect (UISelectable selectable) {
+		if (currentSelection && currentSelection == selectable)
+			currentSelection.Deselect ();
+		currentSelection = null;
 	}
 	public virtual void OnNavigate (Vector2 direction) {
 		if (direction.y > 0)
-			CycleButtons (-1);
+			CycleSelections (-1);
 		else if (direction.y < 0)
-			CycleButtons (1);
+			CycleSelections (1);
+		if (currentSelection is UISlider slider) {
+			if (direction.x != 0)
+				slider.ChangeValue (direction.x);
+		}
 	}
 	public virtual void OnAction () {
-		if (!currentButton)
+		if (!currentSelection)
 			return;
-		else
-			currentButton.OnClick ();
+		else if (currentSelection is UIButton button)
+			button.OnClick ();
 	}
-	void CycleButtons (int dir) {
+	void CycleSelections (int dir) {
 		int currentIndex = 0;
-		UIButton buttonToSelect;
-		if (currentButton == null) {
-			if (buttons.Count == 0)
+		UISelectable elementToSelect;
+		if (currentSelection == null) {
+			if (selections.Count == 0)
 				return;
 			else
-				buttonToSelect = buttons[0];
+				elementToSelect = selections[0];
 		} else {
-			for (int i = 0; i < buttons.Count; i++) {
-				if (buttons[i] == currentButton) {
+			for (int i = 0; i < selections.Count; i++) {
+				if (selections[i] == currentSelection) {
 					currentIndex = i;
 					break;
 				}
 			}
 			currentIndex += dir;
-			if (currentIndex >= buttons.Count)
+			if (currentIndex >= selections.Count)
 				currentIndex = 0;
 			if (currentIndex < 0)
-				currentIndex = buttons.Count - 1;
+				currentIndex = selections.Count - 1;
 		}
 
-		buttonToSelect = buttons[currentIndex];
-		Select (buttonToSelect);
+		elementToSelect = selections[currentIndex];
+		Select (elementToSelect);
 	}
 }
