@@ -325,6 +325,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   viewName: finishView
   score: {fileID: 7148227499860237141}
+  nextLevelButton: {fileID: 6006255122948034807}
 --- !u!1 &3085582840356353462
 GameObject:
   m_ObjectHideFlags: 0

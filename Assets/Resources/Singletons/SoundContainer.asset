@@ -32,5 +32,5 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 90eae78e8ce85a849b5b0ca11b2de641, type: 3}
   - levelName: Tutorial
     clip: {fileID: 8300000, guid: 47f45ef7b5767674393cc401fc325705, type: 3}
-  - levelName: Level1
+  - levelName: Level_1
     clip: {fileID: 8300000, guid: 1532c7e67c2d60c4c8780da14b7e8fcf, type: 3}

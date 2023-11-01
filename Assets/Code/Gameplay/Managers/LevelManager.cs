@@ -8,10 +8,12 @@ public class LevelManager : MonoSingleton<LevelManager> {
 	[SerializeField] Transform startingPosition;
 	GameState currentState;
 	int currentScore;
+	bool readyForNextLevel = false;
 	public int CurrentScore => currentScore;
 	public GameState CurrentGameState => currentState;
 	PlayerHealth player;
 	const int maxPlayerHealth = 3;
+	public bool ReadyForNextLevel => readyForNextLevel;
 
 	protected override void Awake () {
 		base.Awake ();
@@ -80,6 +82,14 @@ public class LevelManager : MonoSingleton<LevelManager> {
 	}
 
 	void OnFinish () {
+		int currentLevel = GetCurrentLevel ();
+
+		if (CheckLevelExists (currentLevel + 1))
+			readyForNextLevel = true;
+
+		if (PlayerData.Instance.UnlockedLevel <= currentLevel && readyForNextLevel)
+			PlayerData.Instance.AddUnlockedLevel ();
+
 		Events.Gameplay.State.OnGameStateChanged.Invoke (GameState.endgame);
 		Events.UI.View.OnCallView.Invoke ("finishView");
 		PlayerData.Instance.SetScore (PlayerData.Instance.Score + currentScore);
@@ -89,5 +99,18 @@ public class LevelManager : MonoSingleton<LevelManager> {
 		Events.Gameplay.State.OnGameStateChanged.Invoke (GameState.endgame);
 		Events.UI.View.OnCallView.Invoke ("gameOverView");
 		SoundManager.Instance.PlayEffectSound ("gameOver");
+	}
+	int GetCurrentLevel () {
+		string sceneName = GameplaySceneManager.CurrentSceneName;
+		int index = sceneName.IndexOf ('_');
+		if (index < 0)
+			return 0;
+		index++;
+		return int.Parse (sceneName.Substring (index, sceneName.Length - index));
+	}
+
+	public bool CheckLevelExists (int level) {
+		string nextLevelName = "Level_" + level.ToString ();
+		return Application.CanStreamedLevelBeLoaded (nextLevelName);
 	}
 }

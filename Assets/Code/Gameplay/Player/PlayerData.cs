@@ -14,4 +14,7 @@ public class PlayerData : ScriptableSingleton<PlayerData> {
 	public void SetUnlockedLevel (int level) {
 		unlockedLevel = level;
 	}
+	public void AddUnlockedLevel () {
+		unlockedLevel++;
+	}
 }

@@ -47,9 +47,11 @@ public class GameSerializer : MonoSingleton<GameSerializer> {
 				serializable.LoadGame (playerSavedData);
 
 			PlayerData.Instance.SetScore (playerSavedData.playerScore);
-			Events.Gameplay.Level.OnGetPoint.Invoke (playerSavedData.playerLevelScore);
+			PlayerData.Instance.SetUnlockedLevel (playerSavedData.unlockedLevels);
 
+			Events.Gameplay.Level.OnGetPoint.Invoke (playerSavedData.playerLevelScore);
 			Events.Gameplay.State.OnGameStateChanged.Invoke (LevelManager.GameState.play);
+
 			yield return null;
 		}
 	}
