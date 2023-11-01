@@ -13,7 +13,8 @@ public class GameSerializer : MonoSingleton<GameSerializer> {
 			serializable.SaveGame (ref saveData);
 		}
 		saveData.playerScore = PlayerData.Instance.Score;
-		saveData.playerLevelScore = LevelManager.Instance.CurrentScore;
+		saveData.playerLevelScore = LevelManager.Instance ? LevelManager.Instance.CurrentScore : 0;
+		saveData.isMenuSave = LevelManager.Instance == null;
 		JsonHelper.SaveToJson<PlayerSaveData> (saveData, fileName);
 	}
 
@@ -33,21 +34,23 @@ public class GameSerializer : MonoSingleton<GameSerializer> {
 		SceneManager.SetActiveScene (newScene);
 		Events.Scene.OnSceneLoaded.Invoke ();
 
-		LevelManager.Instance.CreatePlayer (playerSavedData.playerLives, playerSavedData.playerPosition);
-		foreach (var item in playerSavedData.items) {
-			var savedItem = ObjectPool.Instance.GetFromPool (item.poolName);
-			savedItem.prefab.transform.position = item.position;
-			savedItem.prefab.transform.localScale = Vector3.one * 3;
+		if (!playerSavedData.isMenuSave) {
+			LevelManager.Instance.CreatePlayer (playerSavedData.playerLives, playerSavedData.playerPosition);
+			foreach (var item in playerSavedData.items) {
+				var savedItem = ObjectPool.Instance.GetFromPool (item.poolName);
+				savedItem.prefab.transform.position = item.position;
+				savedItem.prefab.transform.localScale = Vector3.one * 3;
+			}
+
+			List<ISerializable> serializableObjects = SerializableMatcher.Instance.GetAllCollectionElements ();
+			foreach (var serializable in serializableObjects)
+				serializable.LoadGame (playerSavedData);
+
+			PlayerData.Instance.SetScore (playerSavedData.playerScore);
+			Events.Gameplay.Level.OnGetPoint.Invoke (playerSavedData.playerLevelScore);
+
+			Events.Gameplay.State.OnGameStateChanged.Invoke (LevelManager.GameState.play);
+			yield return null;
 		}
-
-		List<ISerializable> serializableObjects = SerializableMatcher.Instance.GetAllCollectionElements ();
-		foreach (var serializable in serializableObjects)
-			serializable.LoadGame (playerSavedData);
-
-		PlayerData.Instance.SetScore(playerSavedData.playerScore);
-		Events.Gameplay.Level.OnGetPoint.Invoke (playerSavedData.playerLevelScore);
-
-		Events.Gameplay.State.OnGameStateChanged.Invoke (LevelManager.GameState.play);
-		yield return null;
 	}
 }

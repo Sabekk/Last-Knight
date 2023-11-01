@@ -11,12 +11,14 @@ public class PlayerSaveData {
 	public Vector2 playerPosition;
 	public List<Items> items;
 	public string currentSceneName;
+	public bool isMenuSave;
 
 	public PlayerSaveData () {
 		playerLives = 3;
 		playerScore = 0;
 		playerLevelScore = 0;
 		unlockedLevels = 0;
+		isMenuSave = false;
 		playerPosition = Vector2.zero;
 		items = new List<Items> ();
 		currentSceneName = GameplaySceneManager.CurrentSceneName;

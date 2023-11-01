@@ -15,6 +15,9 @@ public class MainMenu : UIView {
 	public void OpenLoadView () {
 		Events.UI.View.OnCallView.Invoke ("loadView");
 	}
+	public void OpenSaveView () {
+		Events.UI.View.OnCallView.Invoke ("saveView");
+	}
 
 	public void QuitGame () {
 		Application.Quit ();
