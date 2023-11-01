@@ -7,7 +7,7 @@ public class MainMenu : UIView {
 		GameplaySceneManager.LoadInitializedScene ("Tutorial", true);
 	}
 	public void OpenLevelsChooser () {
-		Events.UI.View.OnCallView.Invoke ("levelChooseView");
+		Events.UI.View.OnCallView.Invoke ("levelsView");
 	}
 	public void OpenOptions () {
 		Events.UI.View.OnCallView.Invoke ("optionsView");

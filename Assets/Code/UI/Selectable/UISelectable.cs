@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class UISelectable : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
+public abstract class UISelectable : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
 	UIView parent;
 	public UIView Parent => parent;
+	virtual public bool Interactable => true;
 
 	public virtual void Initialize () {
 		parent = GetComponentInParent<UIView> (true);

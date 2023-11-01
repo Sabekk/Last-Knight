@@ -27,11 +27,13 @@ public static class GameplaySceneManager {
 		var asyngLoadLevel = SceneManager.LoadSceneAsync (name, LoadSceneMode.Single);
 		while (asyngLoadLevel.progress < 1)
 			yield return null;
+
 		ObjectPool.Instance.ReloadPool ();
+
 		Scene newScene = SceneManager.GetSceneByName (name);
 		SceneManager.SetActiveScene (newScene);
-
 		Events.Scene.OnSceneLoaded.Invoke ();
+
 		if (initializeLevel)
 			LevelManager.Instance.Initialize ();
 	}

@@ -6,17 +6,21 @@ public abstract class UIView : MonoBehaviour {
 	[SerializeField] string viewName;
 	UIView previous;
 	UISelectable currentSelection;
-	List<UISelectable> selections;
+	protected List<UISelectable> selections;
 	public string Name => viewName;
 
 	public static UIView current;
+
 	public virtual void Initialize () {
 		selections = new List<UISelectable> ();
+		InitializeStaticButtons ();
+	}
+
+	protected void InitializeStaticButtons () {
 		selections.AddRange (GetComponentsInChildren<UISelectable> (true));
 		foreach (var button in selections) {
 			button.Initialize ();
 		}
-
 	}
 
 	public virtual void Activate () {
@@ -47,11 +51,18 @@ public abstract class UIView : MonoBehaviour {
 	public virtual void Refresh () {
 		if (PlayerUIController.Instance.GamepadUsing) {
 			if (selections.Count > 0)
-				Select (selections[0]);
+				Select (GetFirstInteractable ());
 		} else {
 			if (currentSelection)
 				Deselect (currentSelection);
 		}
+	}
+	protected virtual UISelectable GetFirstInteractable () {
+		foreach (var selection in selections) {
+			if (selection.Interactable)
+				return selection;
+		}
+		return null;
 	}
 	public virtual void BackToPrevious () {
 		if (previous)
@@ -60,14 +71,19 @@ public abstract class UIView : MonoBehaviour {
 			Deactivate ();
 	}
 	public virtual void Select (UISelectable selectable) {
+		if (selectable && !selectable.Interactable)
+			return;
+
 		if (currentSelection == selectable)
 			return;
 		if (currentSelection) {
 			currentSelection.Deselect ();
 		}
+
 		currentSelection = selectable;
 		if (currentSelection)
 			currentSelection.Select ();
+
 	}
 	public virtual void Deselect (UISelectable selectable) {
 		if (currentSelection && currentSelection == selectable)
@@ -92,12 +108,12 @@ public abstract class UIView : MonoBehaviour {
 	}
 	void CycleSelections (int dir) {
 		int currentIndex = 0;
-		UISelectable elementToSelect;
+		UISelectable elementToSelect = null;
 		if (currentSelection == null) {
 			if (selections.Count == 0)
 				return;
 			else
-				elementToSelect = selections[0];
+				elementToSelect = GetFirstInteractable ();
 		} else {
 			for (int i = 0; i < selections.Count; i++) {
 				if (selections[i] == currentSelection) {
@@ -105,14 +121,49 @@ public abstract class UIView : MonoBehaviour {
 					break;
 				}
 			}
-			currentIndex += dir;
-			if (currentIndex >= selections.Count)
-				currentIndex = 0;
-			if (currentIndex < 0)
-				currentIndex = selections.Count - 1;
+
+			int startingIndex = currentIndex;
+			if (dir > 0) {
+				for (int i = startingIndex; i < selections.Count; i++) {
+					if (currentSelection!= selections[i] && selections[i].Interactable) {
+						elementToSelect = selections[i];
+						break;
+					}
+				}
+				if (elementToSelect == null) {
+					for (int i = 0; i < startingIndex; i++) {
+						if (currentSelection != selections[i] && selections[i].Interactable) {
+							elementToSelect = selections[i];
+							break;
+						}
+					}
+				}
+
+			} else if (dir < 0) {
+				for (int i = startingIndex; i >=0; i--) {
+					if (currentSelection != selections[i] && selections[i].Interactable) {
+						elementToSelect = selections[i];
+						break;
+					}
+				}
+				if (elementToSelect == null) {
+					for (int i = selections.Count-1; i >= startingIndex; i--) {
+						if (currentSelection != selections[i] && selections[i].Interactable) {
+							elementToSelect = selections[i];
+							break;
+						}
+					}
+				}
+			}
+
+			//currentIndex += dir;
+			//if (currentIndex >= selections.Count)
+			//		currentIndex = 0;
+			//if (currentIndex < 0)
+			//	currentIndex = selections.Count - 1;
 		}
 
-		elementToSelect = selections[currentIndex];
+		//elementToSelect = selections[currentIndex];
 		Select (elementToSelect);
 	}
 }

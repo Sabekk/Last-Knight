@@ -9,9 +9,9 @@ using UnityEngine.UI;
 public class UIButton : UISelectable {
 	[SerializeField] UnityEvent onClick;
 	[SerializeField] Transition transition;
-	[SerializeField] Image mainImage;
+	[SerializeField] protected Image mainImage;
 	protected Button button;
-
+	override public bool Interactable => button.interactable;
 	public override void Initialize () {
 		base.Initialize ();
 		button = GetComponent<Button> ();
