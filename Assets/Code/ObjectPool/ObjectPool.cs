@@ -20,7 +20,6 @@ public class ObjectPool : Singleton<ObjectPool> {
 	}
 
 	public void ReloadPool () {
-		Debug.Log (GameplaySceneManager.CurrentSceneName);
 		ClearAllPools ();
 		InitializePools ();
 	}

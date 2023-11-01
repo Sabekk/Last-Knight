@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SoundManager : MonoSingleton<SoundManager> {
-
 	[SerializeField] EffectAudioSource backgroundSound;
 	List<EffectAudioSource> effectsSources;
 
 	const string EFFECT_SOURCE = "sound_effectSource";
+
+	float effectsVolume;
+	float musicVolume;
+
 
 	protected override void Awake () {
 		base.Awake ();
@@ -16,6 +19,7 @@ public class SoundManager : MonoSingleton<SoundManager> {
 	}
 	private void Start () {
 		RefreshBackgroundSound ();
+		RefreshSoundsVolume ();
 	}
 
 	private void OnDestroy () {
@@ -35,6 +39,7 @@ public class SoundManager : MonoSingleton<SoundManager> {
 		AudioClip clip = SoundContainer.Instance.FindAudioClip (soundName);
 		if (clip) {
 			EffectAudioSource effectSource = ObjectPool.Instance.GetFromPool (EFFECT_SOURCE).GetComponent<EffectAudioSource> ();
+			effectSource.Source.volume = effectsVolume;
 			effectSource.PlayClip (clip);
 			effectsSources.Add (effectSource);
 		}
@@ -45,5 +50,24 @@ public class SoundManager : MonoSingleton<SoundManager> {
 		if (clip) {
 			backgroundSound.PlayClip (clip, true);
 		}
+	}
+
+	public void SetMusicVolume (float volume) {
+		AudioData.Instance.SetMusicVolume (volume);
+		RefreshSoundsVolume ();
+	}
+
+	public void SetEffectVolume (float volume) {
+		AudioData.Instance.SetEffectsVolume (volume);
+		RefreshSoundsVolume ();
+	}
+
+	void RefreshSoundsVolume () {
+		effectsVolume = AudioData.Instance.EffectsVolume;
+		musicVolume = AudioData.Instance.MusicVolume;
+		foreach (var source in effectsSources) {
+			source.Source.volume = effectsVolume;
+		}
+		backgroundSound.Source.volume = musicVolume;
 	}
 }

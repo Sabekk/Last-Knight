@@ -7,6 +7,10 @@ public class EffectAudioSource : MonoBehaviour, ObjectPool.IPoolable {
 	AudioSource source;
 	bool isPlaying;
 	public bool IsPlaying => isPlaying;
+	public AudioSource Source {
+		get { return source; }
+		set { source = value; }
+	}
 	public ObjectPool.PoolObject Poolable { get; set; }
 	private void Awake () {
 		source = GetComponent<AudioSource> ();
