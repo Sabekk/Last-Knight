@@ -23,6 +23,7 @@ public class UIButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 	}
 	public virtual void OnClick () {
 		onClick.Invoke ();
+		SoundManager.Instance.PlayEffectSound ("onButtonClick");
 	}
 	
 	public virtual void ToggleTransition (bool state) {
@@ -38,6 +39,7 @@ public class UIButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 	}
 
 	public virtual void Select () {
+		SoundManager.Instance.PlayEffectSound ("onButtonSelect");
 		ToggleTransition (true);
 	}
 	public virtual void Deselect () {

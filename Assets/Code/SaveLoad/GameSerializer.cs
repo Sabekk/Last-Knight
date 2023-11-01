@@ -26,8 +26,12 @@ public class GameSerializer : MonoSingleton<GameSerializer> {
 		var asyngLoadLevel = SceneManager.LoadSceneAsync (playerSavedData.currentSceneName, LoadSceneMode.Single);
 		while (asyngLoadLevel.progress < 1)
 			yield return null;
+
+		ObjectPool.Instance.ReloadPool ();
+
 		Scene newScene = SceneManager.GetSceneByName (playerSavedData.currentSceneName);
 		SceneManager.SetActiveScene (newScene);
+		Events.Scene.OnSceneLoaded.Invoke ();
 
 		LevelManager.Instance.CreatePlayer (playerSavedData.playerLives, playerSavedData.playerPosition);
 		foreach (var item in playerSavedData.items) {

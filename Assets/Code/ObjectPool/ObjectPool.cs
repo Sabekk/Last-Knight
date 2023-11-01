@@ -12,16 +12,15 @@ public class ObjectPool : Singleton<ObjectPool> {
 	public ObjectPool () {
 		poolDictionary = new Dictionary<string, PoolInstance> ();
 		poolCategory = new Dictionary<string, Transform> ();
-		Events.Scene.OnSceneLoaded += ReloadPool;
 	}
 
 	~ObjectPool () {
 		poolDictionary.Clear ();
 		poolCategory.Clear ();
-		Events.Scene.OnSceneLoaded -= ReloadPool;
 	}
 
 	public void ReloadPool () {
+		Debug.Log (GameplaySceneManager.CurrentSceneName);
 		ClearAllPools ();
 		InitializePools ();
 	}

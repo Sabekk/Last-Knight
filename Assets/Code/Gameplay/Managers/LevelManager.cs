@@ -32,7 +32,6 @@ public class LevelManager : MonoSingleton<LevelManager> {
 
 	public void Initialize () {
 		Time.timeScale = 1;
-		ObjectPool.Instance.ReloadPool ();
 		CreatePlayer (maxPlayerHealth, startingPosition.position);
 		scoreItems.Initialize ();
 	}
@@ -84,9 +83,11 @@ public class LevelManager : MonoSingleton<LevelManager> {
 		Events.Gameplay.State.OnGameStateChanged.Invoke (GameState.endgame);
 		Events.UI.View.OnCallView.Invoke ("finishView");
 		PlayerData.Instance.SetScore (PlayerData.Instance.Score + currentScore);
+		SoundManager.Instance.PlayEffectSound ("win");
 	}
 	void OnDeath () {
 		Events.Gameplay.State.OnGameStateChanged.Invoke (GameState.endgame);
 		Events.UI.View.OnCallView.Invoke ("gameOverView");
+		SoundManager.Instance.PlayEffectSound ("gameOver");
 	}
 }

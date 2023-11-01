@@ -67,6 +67,7 @@ public class PlayerController : MonoBehaviour {
 	void OnJump () {
 		if (!IsGrounded)
 			return;
+		SoundManager.Instance.PlayEffectSound ("jump");
 		rb.velocity += Vector2.up * jumpPower;
 	}
 

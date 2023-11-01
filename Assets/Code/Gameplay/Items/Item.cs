@@ -5,14 +5,18 @@ using UnityEngine;
 public abstract class Item : MonoBehaviour, ICollectable, ObjectPool.IPoolable, ISerializable {
 	string poolableName;
 	Collider2D itemCollider;
-	public ObjectPool.PoolObject Poolable { get; set; }
+	AudioSource audioSource;
+
 	protected bool collected;
+
+	public ObjectPool.PoolObject Poolable { get; set; }
 	public bool Collected => collected;
 	public void Collect () {
 		OnCollect ();
 	}
 	private void Awake () {
 		itemCollider = GetComponent<Collider2D> ();
+		audioSource = GetComponent<AudioSource> ();
 	}
 	public virtual void Initialize () {
 		collected = false;
@@ -30,6 +34,7 @@ public abstract class Item : MonoBehaviour, ICollectable, ObjectPool.IPoolable, 
 
 	public virtual void OnCollect () {
 		collected = true;
+		SoundManager.Instance.PlayEffectSound ("collect");
 	}
 
 	public void AssignPoolable (ObjectPool.PoolObject poolable) {

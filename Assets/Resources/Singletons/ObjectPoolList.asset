@@ -40,3 +40,6 @@ MonoBehaviour:
   - name: player
     prefab: {fileID: 6569609033778727949, guid: 46c0d1ccd061dda4888d9a5f379bff45, type: 3}
     size: 1
+  - name: sound_effectSource
+    prefab: {fileID: 8582726055858439537, guid: b2ba21309a300e9428c832b07413df9a, type: 3}
+    size: 10

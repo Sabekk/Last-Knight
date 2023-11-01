@@ -46,8 +46,10 @@ public class PlayerHealth : MonoBehaviour, IDamagable, ISerializable, ObjectPool
 		Health -= damage;
 		if (Health <= 0)
 			Kill ();
-		else
+		else {
 			animator.Play ("GetHit", 1);
+			SoundManager.Instance.PlayEffectSound ("getHit");
+		}
 
 		Events.Gameplay.Player.OnGetHit.Invoke (Health);
 
